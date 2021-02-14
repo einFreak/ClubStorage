@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_shelf"
+    tools:ignore="ExtraText">
+
+    <activity
+        android:id="@+id/nav_login"
+        android:name="com.zappproject.clubstorage.login.LoginActivity"
+        tools:layout="@layout/activity_login">
+
+    </activity>
+
+    <fragment
+        android:id="@+id/nav_shelf"
+        android:name="com.zappproject.clubstorage.ui.shelf.ShelfFragment"
+        android:label="@string/menu_shelf"
+        tools:layout="@layout/fragment_shelf">
+
+        <action
+            android:id="@+id/action_nav_shelf_to_shelf_Details"
+            app:destination="@id/shelf_Details"
+            app:enterAnim="@android:anim/slide_in_left" />
+        <action
+            android:id="@+id/action_nav_shelf_to_addShelfFragment"
+            app:destination="@id/add_shelf_fragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_article"
+        android:name="com.zappproject.clubstorage.ui.article.ArticleFragment"
+        android:label="@string/menu_article"
+        tools:layout="@layout/fragment_article" >
+        <action
+            android:id="@+id/action_nav_article_to_nav_addArticle"
+            app:destination="@id/nav_add_article" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_users"
+        android:name="com.zappproject.clubstorage.ui.users.UsersFragment"
+        android:label="@string/menu_users"
+        tools:layout="@layout/fragment_users" >
+        <action
+            android:id="@+id/action_nav_users_to_addUserFragment"
+            app:destination="@id/add_user_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.zappproject.clubstorage.ui.settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/nav_add_article"
+        android:name="com.zappproject.clubstorage.ui.article.AddArticleFragment"
+        tools:layout="@layout/fragment_add_article"
+        app:navGraph="@navigation/mobile_navigation"
+        android:label="{arg_fragment_add_article_titel}">
+        <argument
+            android:name="arg_fragment_add_article_titel"
+            app:argType="string" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="title"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="price"
+            app:argType="string"
+            android:defaultValue="0" />
+        <argument
+            android:name="unit"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="note"
+            app:argType="string"
+            android:defaultValue=" " />
+    </fragment>
+
+    <fragment
+        android:id="@+id/shelf_Details"
+        android:name="com.zappproject.clubstorage.ui.shelfdetail.ShelfDetailsFragment"
+        android:label="{arg_ShelfName}"
+        tools:layout="@layout/fragment_shelf_details">
+        <argument
+            android:name="arg_ShelfID"
+            app:argType="integer" />
+        <argument
+            android:name="arg_ShelfName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_shelf_Details_to_add_article_to_shelf"
+            app:destination="@id/add_article_to_shelf" />
+        <action
+            android:id="@+id/action_shelf_Details_to_nav_addArticle"
+            app:destination="@id/nav_add_article" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/add_shelf_fragment"
+        android:name="com.zappproject.clubstorage.ui.shelf.AddShelfFragment"
+        android:label="{arg_fragment_add_shelf_titel}"
+        tools:layout="@layout/fragment_add_shelf">
+        <argument
+            android:name="arg_fragment_add_shelf_titel"
+            app:argType="string" />
+        <argument
+            android:name="arg_id"
+            app:argType="integer" />
+        <argument
+            android:name="arg_title"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="arg_note"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/add_user_fragment"
+        android:name="com.zappproject.clubstorage.ui.users.AddUserFragment"
+        android:label="@string/add_user_title"
+        tools:layout="@layout/fragment_add_user" />
+
+    <fragment
+        android:id="@+id/add_article_to_shelf"
+        android:name="com.zappproject.clubstorage.ui.shelfdetail.AddArticleToShelfFragment"
+        android:label="{arg_shelf_title}"
+        tools:layout="@layout/fragment_add_article_to_shelf">
+        <argument
+            android:name="arg_shelf_id"
+            app:argType="integer" />
+        <argument
+            android:name="arg_shelf_title"
+            app:argType="string" />
+    </fragment>
+
+
+</navigation>
